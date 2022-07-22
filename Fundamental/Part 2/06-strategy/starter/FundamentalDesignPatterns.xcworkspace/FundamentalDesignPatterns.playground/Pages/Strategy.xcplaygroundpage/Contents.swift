@@ -70,4 +70,63 @@ public class MovieRatingViewController: UIViewController {
     }
 }
 
+protocol Validatable {
+    func validate(text: String) -> Bool
+}
+ 
+protocol Validator {
+    var validationStrategy: Validatable { get set }
+    func validate(text: String) -> Bool
+}
 
+final class StringValidator: Validator {
+    var validationStrategy: Validatable
+    
+    init(strategy: Validatable) {
+        self.validationStrategy = strategy
+    }
+    
+    func change(strategy: Validatable) {
+        self.validationStrategy = strategy
+    }
+    
+    func validate(text: String) -> Bool {
+        return validationStrategy.validate(text: text)
+    }
+    
+    func validateAll(text: String) -> Bool {
+        let strategies: [Validatable] = [LengthValidator(), NumberValidator(), AsciiValidator()]
+        return strategies.filter({ strategy in
+            return StringValidator(strategy: strategy).validate(text: text)
+        }).isEmpty
+    }
+}
+
+class NumberValidator: Validatable {
+    func validate(text: String) -> Bool {
+        return text.allSatisfy({ $0.isNumber })
+    }
+}
+ 
+class LengthValidator: Validatable {
+    func validate(text: String) -> Bool {
+        return text.count < 10
+    }
+}
+
+class AsciiValidator: Validatable {
+    func validate(text: String) -> Bool {
+        return text.allSatisfy({ $0.isASCII })
+    }
+}
+
+let validator = StringValidator(strategy: LengthValidator())
+print(validator.validate(text: "12345678910"))
+ 
+validator.change(strategy: NumberValidator())
+print(validator.validate(text: "12345678910"))
+
+validator.change(strategy: AsciiValidator())
+print(validator.validate(text: "12345678910"))
+
+print(validator.validateAll(text: "12345678910"))
