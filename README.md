@@ -28,5 +28,5 @@ DesignPattern 관련 이론 정리 및 실습
   + [Strategy](https://github.com/simoniful/iOS_DesignPattern/issues/2)
   + [Singleton](https://github.com/simoniful/iOS_DesignPattern/issues/3)
   + [Memento](https://github.com/simoniful/iOS_DesignPattern/issues/4)
-  + [Observer]()
-  + [Builder]()
+  + [Observer](https://github.com/simoniful/iOS_DesignPattern/issues/5)
+  + [Builder](https://github.com/simoniful/iOS_DesignPattern/issues/6)
