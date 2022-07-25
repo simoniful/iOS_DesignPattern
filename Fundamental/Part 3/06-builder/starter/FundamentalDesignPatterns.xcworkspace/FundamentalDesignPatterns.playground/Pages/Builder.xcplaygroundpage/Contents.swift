@@ -128,14 +128,14 @@ public class Employee {
 }
 
 // MARK: - Example
-let burgerMaker = Employee()
+let orderReceptor = Employee()
 
-if let originalCombo = try? burgerMaker.createOriginalCombo() {
+if let originalCombo = try? orderReceptor.createOriginalCombo() {
   print("Nom nom " + originalCombo.description)
 }
 
 if let porkSpecialCombo = try?
-    burgerMaker.createPorkSpecialCombo() {
+    orderReceptor.createPorkSpecialCombo() {
   print("Nom nom nom " + porkSpecialCombo.description)
 } else {
   print("Sorry, no pork burgers here... :[")
