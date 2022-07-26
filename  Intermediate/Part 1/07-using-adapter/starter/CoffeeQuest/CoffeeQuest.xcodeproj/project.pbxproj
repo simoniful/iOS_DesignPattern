@@ -16,6 +16,9 @@
 		C359338F2023BF5700D85500 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C359338D2023BF5700D85500 /* LaunchScreen.storyboard */; };
 		C35933972023D71C00D85500 /* BusinessMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35933962023D71C00D85500 /* BusinessMapViewModel.swift */; };
 		C38756A0E9013F2F1E6253E0 /* Pods_CoffeeQuest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7C9278042C96775D875EE9F /* Pods_CoffeeQuest.framework */; };
+		F4BED61F288FED7600D2B318 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BED61E288FED7600D2B318 /* Business.swift */; };
+		F4BED621288FEDB700D2B318 /* BusinessSearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BED620288FEDB700D2B318 /* BusinessSearchClient.swift */; };
+		F4BED624288FEEF600D2B318 /* YLPClient + BusinessSearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BED623288FEEF600D2B318 /* YLPClient + BusinessSearchClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		C35933902023BF5700D85500 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C35933962023D71C00D85500 /* BusinessMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessMapViewModel.swift; sourceTree = "<group>"; };
 		C7C9278042C96775D875EE9F /* Pods_CoffeeQuest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeQuest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4BED61E288FED7600D2B318 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
+		F4BED620288FEDB700D2B318 /* BusinessSearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearchClient.swift; sourceTree = "<group>"; };
+		F4BED623288FEEF600D2B318 /* YLPClient + BusinessSearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YLPClient + BusinessSearchClient.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,12 +145,39 @@
 			children = (
 				4252EAA42023DFE500847430 /* AppDelegate */,
 				4252EAA52023DFE800847430 /* Controllers */,
-				42EDDF77249CD1BE0018E8B5 /* Factories */,
-				4252EAA62023DFEE00847430 /* ViewModels */,
-				4252EAA82023DFFB00847430 /* Resources */,
 				4252EAA72023DFF400847430 /* Views */,
+				4252EAA62023DFEE00847430 /* ViewModels */,
+				42EDDF77249CD1BE0018E8B5 /* Factories */,
+				F4BED622288FEED400D2B318 /* Adapters */,
+				F4BED61D288FED5C00D2B318 /* Models */,
+				F4BED61C288FED5000D2B318 /* Protocols */,
+				4252EAA82023DFFB00847430 /* Resources */,
 			);
 			path = CoffeeQuest;
+			sourceTree = "<group>";
+		};
+		F4BED61C288FED5000D2B318 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F4BED620288FEDB700D2B318 /* BusinessSearchClient.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F4BED61D288FED5C00D2B318 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F4BED61E288FED7600D2B318 /* Business.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F4BED622288FEED400D2B318 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				F4BED623288FEEF600D2B318 /* YLPClient + BusinessSearchClient.swift */,
+			);
+			path = Adapters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +295,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C35933972023D71C00D85500 /* BusinessMapViewModel.swift in Sources */,
+				F4BED621288FEDB700D2B318 /* BusinessSearchClient.swift in Sources */,
 				4252EAAA2023E05900847430 /* APIKeys.swift in Sources */,
 				42EDDF79249CD1D40018E8B5 /* AnnotationFactory.swift in Sources */,
+				F4BED61F288FED7600D2B318 /* Business.swift in Sources */,
 				C35933872023BF5700D85500 /* ViewController.swift in Sources */,
+				F4BED624288FEEF600D2B318 /* YLPClient + BusinessSearchClient.swift in Sources */,
 				C35933852023BF5700D85500 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
