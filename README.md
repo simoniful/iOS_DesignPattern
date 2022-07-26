@@ -17,6 +17,8 @@ DesignPattern 관련 이론 정리 및 실습
 
 디자인 패턴을 사용하면 협업을 할 때 해결방법을 디자인 패턴으로 제시하면 설명이 간단해지고 새로운 개발자가 합류해도 기존 프로젝트를 이해하는데 어려움이 없도록 해줍니다. 물론 과도하게 사용되면 프로젝트가 복잡해집니다.
 
+추가적으로 구체적인 아키텍쳐 패턴인 MVC, MVVM, MVP, Ribs, Viper 등은 별도로 정리할 예정입니다.
+
 ### 종류
 |Creational Pattern (생성 패턴)|Structual Pattern (구조 패턴)|Behavioral Pattern (행동 패턴)|
 |:---|:---|:---|
@@ -30,3 +32,7 @@ DesignPattern 관련 이론 정리 및 실습
   + [Memento](https://github.com/simoniful/iOS_DesignPattern/issues/4)
   + [Observer](https://github.com/simoniful/iOS_DesignPattern/issues/5)
   + [Builder](https://github.com/simoniful/iOS_DesignPattern/issues/6)
++ Raywenderich Intermediate
+  + [Factory](https://github.com/simoniful/iOS_DesignPattern/issues/7)
+  + [Adapter](https://github.com/simoniful/iOS_DesignPattern/issues/8)
+  + [Iterator](https://github.com/simoniful/iOS_DesignPattern/issues/9)
