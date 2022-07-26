@@ -39,6 +39,7 @@ public class ViewController: UIViewController {
   private var businesses: [YLPBusiness] = []
   private let client = YLPClient(apiKey: YelpAPIKey)
   private let locationManager = CLLocationManager()
+  private let annotationFactory = AnnotationFactory()
   
   // MARK: - Outlets
   @IBOutlet public var mapView: MKMapView! {
@@ -69,9 +70,11 @@ extension ViewController: MKMapViewDelegate {
   
   private func centerMap(on coordinate: CLLocationCoordinate2D) {
     let regionRadius: CLLocationDistance = 3000
-    let coordinateRegion = MKCoordinateRegion(center: coordinate,
-                                              latitudinalMeters: regionRadius,
-                                              longitudinalMeters: regionRadius)
+    let coordinateRegion = MKCoordinateRegion(
+      center: coordinate,
+      latitudinalMeters: regionRadius,
+      longitudinalMeters: regionRadius
+    )
     mapView.setRegion(coordinateRegion, animated: true)
     searchForBusinesses()
   }
@@ -83,51 +86,35 @@ extension ViewController: MKMapViewDelegate {
         return
     }
     
-    let yelpCoordinate = YLPCoordinate(latitude: coordinate.latitude,
-                                       longitude: coordinate.longitude)
+    let yelpCoordinate = YLPCoordinate(
+      latitude: coordinate.latitude,
+      longitude: coordinate.longitude
+    )
     
-    client.search(with: yelpCoordinate,
-                  term: "coffee",
-                  limit: 35,
-                  offset: 0,
-                  sort: .bestMatched) { [weak self] (searchResult, error) in
-                    guard let self = self else { return }
-                    guard let searchResult = searchResult,
-                      error == nil else {
-                        print("Search failed: \(String(describing: error))")
-                        return
-                    }
-                    self.businesses = searchResult.businesses
-                    DispatchQueue.main.async {
-                      self.addAnnotations()
-                    }
+    client.search(
+      with: yelpCoordinate,
+      term: "coffee",
+      limit: 35,
+      offset: 0,
+      sort: .bestMatched
+    ) { [weak self] (searchResult, error) in
+      guard let self = self else { return }
+      guard let searchResult = searchResult,
+      error == nil else {
+        print("Search failed: \(String(describing: error))")
+        return
+      }
+      self.businesses = searchResult.businesses
+      DispatchQueue.main.async {
+        self.addAnnotations()
+      }
     }
   }
   
   private func addAnnotations() {
     for business in businesses {
-      guard let yelpCoordinate = business.location.coordinate else {
-        continue
-      }
-
-      let coordinate = CLLocationCoordinate2D(latitude: yelpCoordinate.latitude,
-                                              longitude: yelpCoordinate.longitude)
-      let name = business.name
-      let rating = business.rating
-      let image: UIImage
-      switch rating {
-      case 0.0..<3.5: image = UIImage(named: "bad")!
-      case 3.5..<4.0: image = UIImage(named: "meh")!
-      case 4.0..<4.75: image = UIImage(named: "good")!
-      case 4.75...5.0: image = UIImage(named: "bad")!
-      default: image = UIImage(named: "bad")!
-      }
-      
-      let annotation = BusinessMapViewModel(coordinate: coordinate,
-                              name: name,
-                              rating: rating,
-                              image: image)
-      mapView.addAnnotation(annotation)
+      guard let viewModel = annotationFactory.createBusinessMapView(for: business) else { return }
+      mapView.addAnnotation(viewModel)
     }
   }
   

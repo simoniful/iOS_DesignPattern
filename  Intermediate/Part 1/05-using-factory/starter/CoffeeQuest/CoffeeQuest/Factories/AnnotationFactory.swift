@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+///// Copyright (c) 2022 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,4 +30,39 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-public let YelpAPIKey = "rqMB3E4JJUHuShuoCaAr5GWdpRNah3Ty4yNvu-2l93c34QfABpEJSkRlpLJ_ZUU-HUuge_pG_G-N9s_JVl4BHvOGm6kBXXZJQxB4-oU_V2pnRyXFtlMQRgNxz2HeYnYx"
+import YelpAPI
+import MapKit
+
+public class AnnotationFactory {
+  public func createBusinessMapView(for business: YLPBusiness) -> BusinessMapViewModel? {
+    guard let yelpCoordinate = business.location.coordinate else {
+      return nil
+    }
+    
+    let coordinate = CLLocationCoordinate2D(
+      latitude: yelpCoordinate.latitude,
+      longitude: yelpCoordinate.longitude
+    )
+    
+    let name = business.name
+    let rating = business.rating
+    let image : UIImage
+    switch rating {
+    case 0.0..<3.0: image = UIImage(named: "terrible")!
+    case 3.0..<3.5: image = UIImage(named: "bad")!
+    case 3.5..<4.0: image = UIImage(named: "meh")!
+    case 4.0..<4.75: image = UIImage(named: "good")!
+    case 4.75...5.0: image = UIImage(named: "great")!
+    default: image = UIImage(named: "bad")!
+    }
+    
+    let businessMapViewModel = BusinessMapViewModel(
+      coordinate: coordinate,
+      name: name,
+      rating: rating,
+      image: image
+    )
+    
+    return businessMapViewModel
+  }
+}
