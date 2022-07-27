@@ -94,7 +94,7 @@ jack.status = .hired
 
 print(emailFactory.createEmail(to: jack), "\n")
 
-// MARK: - Example 2
+// MARK: - Example 2, Factory method
 
 // Product Interface
 protocol Player {
@@ -180,7 +180,7 @@ videoPlayer.play()
 videoPlayer.changeContent(name: "Romance")
 
 
-// MARK: - Example 3
+// MARK: - Example 3, Factory method
 
 // Product Interface
 protocol Animal {
@@ -286,4 +286,129 @@ animalCafe.addAnimal(with: "D")
 animalCafe.addAnimal(with: "E")
 animalCafe.addAnimal(with: "F")
 animalCafe.printAnimals()
+
+// MARK: - Example 4, Abstract Factory
+protocol View: CustomStringConvertible {
+    var id: String { get set }
+    var color: String { get set }
+}
+
+extension View {
+    var description: String {
+        return "type: view id: \(id) color \(color)"
+    }
+}
+
+protocol Button: CustomStringConvertible {
+    var id: String { get set }
+    var color: String { get set }
+}
+
+extension Button {
+    var description: String {
+        return "type: button id: \(id) color \(color)"
+    }
+}
+
+class YellowView: View {
+    var id: String
+    var color: String = "Yellow"
+    
+    init(id: String) {
+        self.id = id
+    }
+}
+ 
+class BlackView: View {
+    var id: String
+    var color: String = "Black"
+    
+    init(id: String) {
+        self.id = id
+    }
+}
+ 
+class YellowButton: Button {
+    var id: String
+    var color: String = "Yellow"
+    
+    init(id: String) {
+        self.id = id
+    }
+}
+ 
+class BlackButton: Button {
+    var id: String
+    var color: String = "Black"
+    
+    init(id: String) {
+        self.id = id
+    }
+}
+
+protocol ButtonBoxFactory {
+    func createView() -> View
+    func createButton() -> Button
+}
+ 
+class DarkButtonBoxFactory: ButtonBoxFactory {
+    func createView() -> View {
+        return BlackView(id: "bv")
+    }
+    
+    func createButton() -> Button {
+        return YellowButton(id: "yb")
+    }
+}
+ 
+class LightButtonBoxFactory: ButtonBoxFactory {
+    func createView() -> View {
+        return YellowView(id: "yv")
+    }
+    
+    func createButton() -> Button {
+        return BlackButton(id: "bb")
+    }
+}
+
+class ButtonBox {
+    enum ColorTheme {
+        case dark, light
+    }
+    
+    private var colorTheme: ColorTheme
+    private var buttonBoxFacotry: ButtonBoxFactory
+    private var button: Button?
+    private var view: View?
+    
+    init(colorTheme: ColorTheme) {
+        self.colorTheme = colorTheme
+        self.buttonBoxFacotry = colorTheme == .dark ? DarkButtonBoxFactory() : LightButtonBoxFactory()
+        self.createButtonBox()
+    }
+    
+    private func createButtonBox() {
+        self.button = buttonBoxFacotry.createButton()
+        self.view = buttonBoxFacotry.createView()
+    }
+    
+    func change(colorTheme: ColorTheme) {
+        self.colorTheme = colorTheme
+        self.buttonBoxFacotry = colorTheme == .dark ? DarkButtonBoxFactory() : LightButtonBoxFactory()
+        self.createButtonBox()
+    }
+    
+    func printComponents() {
+        print(self.view!)
+        print(self.button!)
+    }
+}
+
+var buttonBox = ButtonBox(colorTheme: .dark)
+buttonBox.printComponents()
+ 
+print("\n## Change Factory ##\n")
+ 
+buttonBox.change(colorTheme: .light)
+buttonBox.printComponents()
 
