@@ -22,6 +22,7 @@
 import Foundation
 
 // Make networking calls, which return a special "token"
+// Adaptee(Lagacy object)
 public class GoogleAuthenticator {
     public func login(email: String,
                       password: String,
@@ -42,6 +43,7 @@ public struct GoogleUser {
     public var token: String
 }
 
+// Target(new Protocol)
 public protocol AuthenticationService {
     func login(
         email: String,
@@ -60,6 +62,7 @@ public struct Token {
     public let value: String
 }
 
+// Adapter
 public class GoogleAuthenticatorAdapter: AuthenticationService {
     private var authenticator = GoogleAuthenticator()
     
@@ -83,6 +86,7 @@ public class GoogleAuthenticatorAdapter: AuthenticationService {
     }
 }
 
+// Client(object using an adapter)
 let authService: AuthenticationService = GoogleAuthenticatorAdapter()
 authService.login(
     email: "simon@apple.com",

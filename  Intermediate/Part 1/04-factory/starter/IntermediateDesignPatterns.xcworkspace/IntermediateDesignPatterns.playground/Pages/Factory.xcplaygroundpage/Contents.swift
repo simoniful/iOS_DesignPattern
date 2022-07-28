@@ -288,6 +288,7 @@ animalCafe.addAnimal(with: "F")
 animalCafe.printAnimals()
 
 // MARK: - Example 4, Abstract Factory
+// Product Interface
 protocol View: CustomStringConvertible {
     var id: String { get set }
     var color: String { get set }
@@ -299,6 +300,7 @@ extension View {
     }
 }
 
+// Product Interface
 protocol Button: CustomStringConvertible {
     var id: String { get set }
     var color: String { get set }
