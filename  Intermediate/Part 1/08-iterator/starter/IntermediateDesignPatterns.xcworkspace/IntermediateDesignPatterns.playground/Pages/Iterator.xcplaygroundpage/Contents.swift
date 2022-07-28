@@ -16,6 +16,7 @@
 
 import Foundation
 
+// Example 1 - Iterator supported in Swift
 // Iterator Object
 public struct Queue<T> {
     private var array: [T?] = []
@@ -100,3 +101,100 @@ print("\nSorted Tickets in queue:")
 for ticket in sortedTickets {
     print(ticket.description)
 }
+
+// Example 2 - Custom Iterator
+// Iterable Interface
+protocol Iterable {
+    associatedtype Iterator
+    func makeIterator() -> Iterator
+}
+
+// Iterator Interface
+protocol Iterator {
+    associatedtype Element
+    func first() -> Element?
+    func currentItem() -> Element?
+    func next() -> Element?
+    func hasNext() -> Bool
+}
+
+// Concrete Iterator
+final class defaultIterator<T>: Iterator {
+    typealias Element = T
+    private var items: [Element] = []
+    private var current = 0
+ 
+    init(items: [Element]) {
+        self.items = items
+    }
+    
+    func first() -> Element? {
+        guard items.count != 0 else { return nil }
+        return items[0]
+    }
+    
+    func currentItem() -> Element? {
+        guard items.count != 0 else { return nil }
+        return items[current]
+    }
+ 
+    func next() -> Element? {
+        guard hasNext() else { return nil }
+        defer { self.current += 1 }
+ 
+        return items[current]
+    }
+ 
+    func hasNext() -> Bool {
+        current < items.count
+    }
+}
+
+// Concrete iterable
+final class MapCollection: Iterable {
+    private var map: [String: String] = [:]
+ 
+    func add(element: String, for key: String) {
+        map.updateValue(element, forKey: key)
+    }
+ 
+    func makeIterator() -> defaultIterator<String> {
+        return defaultIterator<String>(items: self.map.values.map({ $0 }))
+    }
+}
+
+// Concrete iterable
+final class ListCollection: Iterable {
+    private var list: [String] = []
+ 
+    func add(element: String) {
+        list.append(element)
+    }
+ 
+    func makeIterator() -> defaultIterator<String> {
+        return defaultIterator<String>(items: self.list)
+    }
+}
+
+
+let map = MapCollection()
+let list = ListCollection()
+ 
+map.add(element: "1", for: "1")
+map.add(element: "2", for: "2")
+map.add(element: "3", for: "3")
+ 
+list.add(element: "11")
+list.add(element: "22")
+list.add(element: "33")
+ 
+let iterators = [map.makeIterator(), list.makeIterator()]
+ 
+for iterator in iterators {
+    while iterator.hasNext() {
+        print(iterator.next() ?? "0")
+    }
+}
+
+
+
