@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+///// Copyright (c) 2022 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,4 +30,27 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-public let YelpAPIKey = "rqMB3E4JJUHuShuoCaAr5GWdpRNah3Ty4yNvu-2l93c34QfABpEJSkRlpLJ_ZUU-HUuge_pG_G-N9s_JVl4BHvOGm6kBXXZJQxB4-oU_V2pnRyXFtlMQRgNxz2HeYnYx"
+import Foundation
+
+public struct Filter {
+  public let filter: (Business) -> Bool
+  public var businesses: [Business] = []
+  
+  public static func identity() -> Filter {
+    return Filter(filter: { _ in return true })
+  }
+  
+  public static func starRating(atLeast rating: Double) -> Filter {
+    return Filter(filter: { $0.rating >= rating })
+  }
+  
+  public func filterBusinesses() -> [Business] {
+    return businesses.filter(filter)
+  }
+}
+
+extension Filter: Sequence {
+  public func makeIterator() -> IndexingIterator<[Business]> {
+    return filterBusinesses().makeIterator()
+  }
+}
