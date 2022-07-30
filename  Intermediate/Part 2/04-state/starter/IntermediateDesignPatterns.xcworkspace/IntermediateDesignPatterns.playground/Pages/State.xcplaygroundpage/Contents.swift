@@ -17,6 +17,7 @@
  */
 import UIKit
 import PlaygroundSupport
+
 // MARK: - State Protocol
 public protocol TrafficLightState: AnyObject {
     var delay: TimeInterval { get }
@@ -34,6 +35,7 @@ extension TrafficLightState {
         }
     }
 }
+
 // MARK: - Context
 public class TrafficLight: UIView {
     public private(set) var canisterLayers: [CAShapeLayer] = []
