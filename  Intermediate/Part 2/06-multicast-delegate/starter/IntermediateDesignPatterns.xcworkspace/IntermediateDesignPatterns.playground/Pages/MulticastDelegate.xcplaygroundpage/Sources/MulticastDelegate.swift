@@ -55,7 +55,7 @@ public class MulticastDelegate<T> {
   }
   
   public func removeDelegate(_ removeDelegate: T) {
-    guard let index = delegateWrappers.index(where: {
+    guard let index = delegateWrappers.firstIndex(where: {
       $0.delegate === (removeDelegate as AnyObject)
     }) else {
       return
