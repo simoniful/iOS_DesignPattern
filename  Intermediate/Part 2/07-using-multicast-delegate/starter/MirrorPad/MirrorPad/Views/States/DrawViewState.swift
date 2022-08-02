@@ -27,37 +27,41 @@
 /// THE SOFTWARE.
 
 import UIKit
-public class AcceptInputState: DrawViewState {
-  public override func animate() {
-    let animateState = transitionToState(matching: AnimateState.identifier)
-    animateState.animate()
+
+public class DrawViewState {
+  // MARK: - Class Properties
+  public class var identifier: AnyHashable {
+    return ObjectIdentifier(self)
   }
   
-  public override func clear() {
-    let clearState = transitionToState(matching: ClearState.identifier)
-    clearState.clear()
+  // MARK: - Instance Properties
+  public unowned let drawView: DrawView
+  
+  // MARK: - Object Lifecycle
+  public init(drawView: DrawView) {
+    self.drawView = drawView
   }
   
-  public override func copyLines(from source: DrawView) {
-    let copyState = transitionToState(matching: CopyState.identifier)
-    copyState.copyLines(from: source)
+  // MARK: - Actions
+  public func animate() { }
+  public func copyLines(from source: DrawView) { }
+  public func clear() { }
+  public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) { }
+  public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) { }
+  
+  // MARK: - State Management
+  @discardableResult internal func transitionToState(
+    matching identifier: AnyHashable) -> DrawViewState {
+    let state = drawView.states[identifier]!
+    drawView.currentState = state
+    return state
+  }
+}
+
+extension DrawViewState: DrawViewDelegate {
+  public func drawView(_ source: DrawView, didAddLine line: LineShape) {
   }
   
-  public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    guard let point = touches.first?.location(in: drawView) else { return }
-    let line = LineShape(color: drawView.lineColor,
-                         width: drawView.lineWidth,
-                         startPoint: point)
-    drawView.lines.append(line)
-    drawView.layer.addSublayer(line)
-  }
-  
-  public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    guard let point = touches.first?.location(in: drawView),
-      drawView.bounds.contains(point),
-      let currentLine = drawView.lines.last else {
-        return
-    }
-    currentLine.addPoint(point)    
+  public func drawView(_ source: DrawView, didAddPoint point: CGPoint) {
   }
 }

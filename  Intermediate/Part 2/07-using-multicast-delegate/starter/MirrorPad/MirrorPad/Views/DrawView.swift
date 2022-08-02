@@ -32,8 +32,12 @@
 
 import UIKit
 
-public class DrawView: UIView {
+@objc public protocol DrawViewDelegate: AnyObject {
+  func drawView(_ source: DrawView, didAddLine line: LineShape)
+  func drawView(_ source: DrawView, didAddPoint point: CGPoint)
+}
 
+public class DrawView: UIView {
   // MARK: - Instance Properties
   public lazy var currentState = states[AcceptInputState.identifier]!
   public lazy var states = [
@@ -76,5 +80,26 @@ public class DrawView: UIView {
 
   public func clear() {
     currentState.clear()
+  }
+  
+  // MARK: - Delegate Management
+  public let multicastDelegate = MulticastDelegate<DrawViewDelegate>()
+  
+  public func addDelegate(_ delegate: DrawViewDelegate) {
+    multicastDelegate.addDelegate(delegate)
+  }
+  
+  public func removeDelegate(_ delegate: DrawViewDelegate) {
+    multicastDelegate.removeDelegate(delegate)
+  }
+}
+
+extension DrawView: DrawViewDelegate {
+  public func drawView(_ source: DrawView, didAddLine line: LineShape) {
+    currentState.drawView(source, didAddLine: line)
+  }
+  
+  public func drawView(_ source: DrawView, didAddPoint point: CGPoint) {
+    currentState.drawView(source, didAddPoint: point)
   }
 }

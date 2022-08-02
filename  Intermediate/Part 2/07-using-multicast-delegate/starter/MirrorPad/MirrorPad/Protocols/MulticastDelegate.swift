@@ -31,7 +31,6 @@
 /// THE SOFTWARE.
 
 public class MulticastDelegate<T> {
-  
   // MARK: - DelegateWrapper
   private class DelegateWrapper {
     
