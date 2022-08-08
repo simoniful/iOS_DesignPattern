@@ -33,7 +33,7 @@
 import UIKit
 
 // MARK: - StepViewControllerDelegate
-public protocol StepViewControllerDelegate: class {
+public protocol StepViewControllerDelegate: AnyObject {
   func stepViewControllerDidPressNext(_ controller: StepViewController)
 }
 

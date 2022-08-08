@@ -46,7 +46,7 @@ open class Mediator<ColleagueType> {
     }
     
     init(strongColleague: ColleagueType) {
-      self.strongColleague = strongColleague  as AnyObject
+      self.strongColleague = strongColleague as AnyObject
       self.weakColleague = nil
     }
   }
