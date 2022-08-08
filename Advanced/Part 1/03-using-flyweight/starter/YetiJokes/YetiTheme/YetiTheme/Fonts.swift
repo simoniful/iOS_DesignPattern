@@ -32,6 +32,30 @@
 
 import Foundation
 
+/* 직접적으로 Bundle 내 폰트를 등록할 수 있으나, 분리된 번들을 통해서 여러 app에서 사용하고자 하는 경우에 다음과 같이 flyweight 패턴을 통하여 전역적으로 접근할 수 있도록 구성 가능 */
+
 public final class Fonts {
   
+  public static let large = loadFont(name: fontName, size: 30.0)
+  public static let medium = loadFont(name: fontName, size: 25.0)
+  public static let small = loadFont(name: fontName, size: 18.0)
+  
+  private static let fontName = "coolstory-regular"
+  
+  private static func loadFont(name: String, size: CGFloat) -> UIFont {
+    if let font = UIFont(name: name, size: size) {
+      return font
+    }
+    // 등록된 폰트가 없는 경우 동적으로 등록
+    let bundle = Bundle(for: Fonts.self)
+    guard let url = bundle.url(forResource: name, withExtension: "ttf"),
+          let fontData = NSData(contentsOf: url),
+          let provider = CGDataProvider(data: fontData),
+          let cgFont = CGFont(provider),
+          let fontName = cgFont.postScriptName as String? else {
+      preconditionFailure("\(name) 폰트를 불러올 수 없습니다")
+    }
+    CTFontManagerRegisterGraphicsFont(cgFont, nil)
+    return UIFont(name: fontName, size: size)!
+  }
 }
