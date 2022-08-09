@@ -29,3 +29,23 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
+
+import YelpAPI
+
+// MARK: - Mediator Protocol
+public protocol SearchColleagueMediating: AnyObject {
+  func searchColleague(
+    _ searchColleague: SearchColleague,
+    didSelect business: YLPBusiness
+  )
+  
+  func searchColleague(
+    _ searchColleague: SearchColleague,
+    didCreate viewModels: Set<BusinessMapViewModel>
+  )
+  
+  func searchColleague(
+    _ searchColleague: SearchColleague,
+    searchFailed error: Error?
+  )
+}
