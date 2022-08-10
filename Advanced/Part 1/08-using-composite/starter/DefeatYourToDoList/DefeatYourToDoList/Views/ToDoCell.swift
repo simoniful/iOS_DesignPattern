@@ -28,7 +28,7 @@
 
 import UIKit
 
-public protocol ToDoCellDelegate: class {
+public protocol ToDoCellDelegate: AnyObject {
   func toDoCellDidUpdateSubtask(_ cell: ToDoCell)
 }
 
@@ -41,7 +41,7 @@ public class ToDoCell: UICollectionViewCell {
 
   // MARK: - Properties
   weak var delegate: ToDoCellDelegate?
-  var subtasks: [ToDoItem]?
+  var subtasks: [ToDo]?
 
   public override func layoutSubviews() {
     checkBoxView.layer.borderWidth = 1
@@ -70,7 +70,7 @@ extension ToDoCell: UICollectionViewDataSource {
     let toDo = subtasks![indexPath.row]
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ToDoCell
 
-    if toDo.isComplete {
+    if toDo.isCompleted {
       cell.checkBoxView.backgroundColor = UIColor(red: 0.24, green: 0.56, blue: 0.30, alpha: 1.0)
     } else {
       cell.checkBoxView.backgroundColor = .white
@@ -83,11 +83,11 @@ extension ToDoCell: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension ToDoCell: UICollectionViewDelegate {
-
+  // 13.0에서 내부 CollectionView 터치 오류 - 필요에 따라 조정할 경우가 생길 수 있음
   public func collectionView(_ collectionView: UICollectionView,
                              didSelectItemAt indexPath: IndexPath) {
     let toDo = subtasks![indexPath.row]
-    toDo.isComplete = !toDo.isComplete
+    toDo.isCompleted = !toDo.isCompleted
     collectionView.reloadData()
     delegate?.toDoCellDidUpdateSubtask(self)
   }

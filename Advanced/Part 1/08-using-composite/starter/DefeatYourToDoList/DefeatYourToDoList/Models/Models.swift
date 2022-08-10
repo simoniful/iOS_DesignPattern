@@ -28,11 +28,33 @@
 
 import Foundation
 
-final class ToDoItem {
+final class ToDoItem: ToDo {
   var name: String
-  var isComplete = false
-
+  var isCompleted = false
+  let subtasks: [ToDo] = []
+  
   init(name: String) {
     self.name = name
+  }
+}
+
+final class MultistepToDoItem: ToDo {
+  var name: String
+  var isCompleted: Bool {
+    get {
+      return subtasks.reduce(true) { result, toDo in
+        return result && toDo.isCompleted
+      }
+    } set {
+      subtasks.forEach {
+        $0.isCompleted = newValue
+      }
+    }
+  }
+  let subtasks: [ToDo]
+  
+  init(name: String, subtasks: [ToDo]) {
+    self.name = name
+    self.subtasks = subtasks
   }
 }

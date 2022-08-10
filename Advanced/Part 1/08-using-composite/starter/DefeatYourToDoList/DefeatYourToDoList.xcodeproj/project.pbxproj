@@ -15,6 +15,7 @@
 		C33CECC820A312D90001F107 /* ToDoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33CECC720A312D90001F107 /* ToDoCell.xib */; };
 		C33CECCA20A313DA0001F107 /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CECC920A313DA0001F107 /* ToDoCell.swift */; };
 		C33CECCC20A3185D0001F107 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CECCB20A3185D0001F107 /* Models.swift */; };
+		F46566ED28A3739400094FA2 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46566EC28A3739400094FA2 /* ToDo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		C33CECC720A312D90001F107 /* ToDoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoCell.xib; sourceTree = "<group>"; };
 		C33CECC920A313DA0001F107 /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 		C33CECCB20A3185D0001F107 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		F46566EC28A3739400094FA2 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,9 +112,18 @@
 		C33CECCD20A318660001F107 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F46566EB28A3737400094FA2 /* Protocols */,
 				C33CECCB20A3185D0001F107 /* Models.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F46566EB28A3737400094FA2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F46566EC28A3739400094FA2 /* ToDo.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C33CECB420A3077E0001F107 /* ViewController.swift in Sources */,
+				F46566ED28A3739400094FA2 /* ToDo.swift in Sources */,
 				C33CECCA20A313DA0001F107 /* ToDoCell.swift in Sources */,
 				C33CECB220A3077E0001F107 /* AppDelegate.swift in Sources */,
 				C33CECCC20A3185D0001F107 /* Models.swift in Sources */,
