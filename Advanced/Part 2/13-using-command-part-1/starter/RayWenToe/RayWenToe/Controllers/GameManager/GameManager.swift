@@ -37,7 +37,11 @@ public class GameManager {
   public let player1: Player
   public let player2: Player
   public private(set) var gameboard: Gameboard!
-
+  internal lazy var movesForPlayer = [
+    player1: [MoveCommand](),
+    player2: [MoveCommand]()
+  ]
+  
   private var currentState: GameState {
     return states[currentStateIndex]
   }
@@ -87,7 +91,7 @@ public class GameManager {
     gameboard.clear()
     gameplayView.gameboardView.clear()
 
-    // TODO: - Reset movesForPlayers
+    movesForPlayer = [player1: [], player2: []]
 
     currentStateIndex = 0
     currentState.begin()

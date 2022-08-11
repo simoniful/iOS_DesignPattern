@@ -1,15 +1,15 @@
-/// Copyright (c) 2018 Razeware LLC
-///
+/// Copyright (c) 2022 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-///
+/// 
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,40 +26,21 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-public class GameState {
+import Foundation
 
-  // MARK: - Instance Properties
-  public unowned let gameManager: GameManager
-
-  // MARK: - Compute Properties
-  public var gameboard: Gameboard {
-    return gameManager.gameboard
-  }
-  public var gameboardView: GameboardView {
-    return gameManager.gameplayView.gameboardView
-  }
-  public var gameplayView: GameplayView {
-    return gameManager.gameplayView
-  }
+public struct MoveCommand {
+  public var gameboard: Gameboard
+  public var gameboardView: GameboardView
+  public var player: Player
+  public var position: GameboardPosition
   
-  public var movesForPlayer: [Player: [MoveCommand]] {
-    get { return gameManager.movesForPlayer }
-    set { gameManager.movesForPlayer = newValue }
+  public func execute(completion: (() -> Void)? = nil) {
+    gameboard.setPlayer(player, at: position)
+    gameboardView.placeMarkView(
+      player.markViewPrototype.copy(),
+      at: position,
+      animated: true,
+      completion: completion
+    )
   }
-
-  internal var turnsPerPlayer: Int {
-    return gameManager.turnsPerPlayer
-  }
-
-  // MARK: - Object Lifecycle
-  public init(gameManager: GameManager) {
-    self.gameManager = gameManager
-  }
-
-  // MARK: - Actions
-  public func addMove(at position: GameboardPosition) { }
-  public func begin() { }
-  public func handleActionPressed() { }
-  public func handleUndoPressed() { }
 }
-
