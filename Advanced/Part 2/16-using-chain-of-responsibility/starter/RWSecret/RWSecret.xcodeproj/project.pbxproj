@@ -21,6 +21,8 @@
 		42A178BD20904780004F9B58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A178BB20904780004F9B58 /* LaunchScreen.storyboard */; };
 		D495DDCB5E67BA4487EB4888 /* Pods_RWSecret_RWSecretTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93359616518307B664B191A1 /* Pods_RWSecret_RWSecretTests.framework */; };
 		EEB58FE55E81995D685988F1 /* Pods_RWSecret.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA5DCEAAE7F1D9DAEB377B3 /* Pods_RWSecret.framework */; };
+		F46566F128A63A8400094FA2 /* DecryptionHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46566F028A63A8400094FA2 /* DecryptionHandlerProtocol.swift */; };
+		F46566F428A63B1400094FA2 /* DecryptionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46566F328A63B1400094FA2 /* DecryptionHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		93359616518307B664B191A1 /* Pods_RWSecret_RWSecretTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RWSecret_RWSecretTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F08E657432728512D9A6CC6 /* Pods-RWSecret-RWSecretTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RWSecret-RWSecretTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RWSecret-RWSecretTests/Pods-RWSecret-RWSecretTests.release.xcconfig"; sourceTree = "<group>"; };
 		C3980ECB1180D6E5F6686E04 /* Pods-RWSecret-RWSecretTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RWSecret-RWSecretTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RWSecret-RWSecretTests/Pods-RWSecret-RWSecretTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F46566F028A63A8400094FA2 /* DecryptionHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptionHandlerProtocol.swift; sourceTree = "<group>"; };
+		F46566F328A63B1400094FA2 /* DecryptionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptionHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				4201976D2090650D00A192ED /* PasswordClient.swift */,
+				F46566F328A63B1400094FA2 /* DecryptionHandler.swift */,
 			);
 			path = PasswordClient;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 				42A178C5209047B0004F9B58 /* Controllers */,
 				4201978F2090993600A192ED /* Models */,
 				4201976C209064CA00A192ED /* PasswordClient */,
+				F46566F228A63AB900094FA2 /* Protocols */,
 				42A178C7209047BE004F9B58 /* Resources */,
 				42A178C6209047B6004F9B58 /* Views */,
 			);
@@ -218,6 +224,14 @@
 				93359616518307B664B191A1 /* Pods_RWSecret_RWSecretTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F46566F228A63AB900094FA2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F46566F028A63A8400094FA2 /* DecryptionHandlerProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,9 +426,11 @@
 				42A178B52090477F004F9B58 /* DecryptViewController.swift in Sources */,
 				42A178B32090477F004F9B58 /* AppDelegate.swift in Sources */,
 				4201976E2090650D00A192ED /* PasswordClient.swift in Sources */,
+				F46566F128A63A8400094FA2 /* DecryptionHandlerProtocol.swift in Sources */,
 				42019793209099BA00A192ED /* SecretMessageCareTaker.swift in Sources */,
 				4201976B2090642500A192ED /* PasswordViewController.swift in Sources */,
 				420197912090994900A192ED /* SecretMessage.swift in Sources */,
+				F46566F428A63B1400094FA2 /* DecryptionHandler.swift in Sources */,
 				4201979920909CD500A192ED /* SecretMessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
