@@ -42,3 +42,10 @@ DesignPattern 관련 이론 정리 및 실습
   + [State](https://github.com/simoniful/iOS_DesignPattern/issues/13)
   + [Multicate Delegate](https://github.com/simoniful/iOS_DesignPattern/issues/14)
   + [Facade](https://github.com/simoniful/iOS_DesignPattern/issues/15)
+  + Raywenderich Advanced
+  + [Flyweight](https://github.com/simoniful/iOS_DesignPattern/issues/16)
+  + [Mediator](https://github.com/simoniful/iOS_DesignPattern/issues/17)
+  + [Composite](https://github.com/simoniful/iOS_DesignPattern/issues/18)
+  + [Command](https://github.com/simoniful/iOS_DesignPattern/issues/19)
+  + [Chain of Responsibility](https://github.com/simoniful/iOS_DesignPattern/issues/20)
+  + [Coordinator](https://github.com/simoniful/iOS_DesignPattern/issues/21)
