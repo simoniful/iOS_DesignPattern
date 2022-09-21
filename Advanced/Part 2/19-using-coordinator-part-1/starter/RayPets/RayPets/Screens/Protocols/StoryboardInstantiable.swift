@@ -32,7 +32,7 @@
 
 import UIKit
 
-public protocol StoryboardInstantiable: class {
+public protocol StoryboardInstantiable: AnyObject {
   associatedtype MyType
 
   static var storyboardFileName: String { get }

@@ -33,7 +33,7 @@
 import UIKit
 
 // MARK: - NoAppointmentViewControllerDelegate
-public protocol NoAppointmentRequiredViewControllerDelegate: class {
+public protocol NoAppointmentRequiredViewControllerDelegate: AnyObject {
   func noAppointmentViewControllerDidPressOkay(_ controller: NoAppointmentRequiredViewController)
 }
 

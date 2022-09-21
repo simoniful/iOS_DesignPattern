@@ -33,7 +33,7 @@
 import UIKit
 
 // MARK: - SelectVisitTypeViewControllerDelegate
-public protocol SelectVisitTypeViewControllerDelegate: class {
+public protocol SelectVisitTypeViewControllerDelegate: AnyObject {
   func selectVisitTypeViewController(_ controller: SelectVisitTypeViewController,
                                      didSelect visitType: VisitType)
 }
