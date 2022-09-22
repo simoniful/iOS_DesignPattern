@@ -22,7 +22,7 @@ DesignPattern 관련 이론 정리 및 실습
 ### 종류
 |Creational Pattern (생성 패턴)|Structual Pattern (구조 패턴)|Behavioral Pattern (행동 패턴)|
 |:---|:---|:---|
-|• Abstract Factory<br>• Builder<br>• Factory Method<br>• Prototype<br>• Singleton|• Adapter<br>• <span style="color:gray">Bridge</span><br>• Composite<br>• <span style="color:gray">Decorator</span><br>• Facade<br>• Flyweight<br>• <span style="color:gray">Proxy</span>|• Chain of Responsibilty<br>• Command<br>• <span style="color:gray">Interpreter</span><br>• Iterator<br>• Mediator<br>• Memento<br>• Observer<br>• State<br>• Strategy<br>• <span style="color:gray">Template Method</span><br>• <span style="color:gray">Visitor</span>|
+|• Abstract Factory<br>• Builder<br>• Factory Method<br>• Prototype<br>• Singleton|• Adapter<br>• <span style="color:red">Bridge</span><br>• Composite<br>• <span style="color:red">Decorator</span><br>• Facade<br>• Flyweight<br>• <span style="color:red">Proxy</span>|• Chain of Responsibilty<br>• Command<br>• <span style="color:red">Interpreter</span><br>• Iterator<br>• Mediator<br>• Memento<br>• Observer<br>• State<br>• Strategy<br>• <span style="color:red">Template Method</span><br>• <span style="color:red">Visitor</span>|
 
 ## Getting Start
 + Raywenderich Fundamental
