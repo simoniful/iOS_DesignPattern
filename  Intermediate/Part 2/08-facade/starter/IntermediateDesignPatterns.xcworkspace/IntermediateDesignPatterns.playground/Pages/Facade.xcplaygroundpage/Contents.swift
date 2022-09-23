@@ -86,7 +86,7 @@ public class OrderFacade {
         shipments.append(product)
         shippingDatabase.pendingShipments[customer] = shipments
         
-        print("Order placed for '\(product.name)' by '\(customer.name)'")
+        print("Order placed for '\(product.name)' by '\(customer.name)' is appended in peding shipment list")
     }
 }
 
@@ -112,4 +112,4 @@ let simon = Customer(identifier: "customer-001", address: "505, Sinlimdong-gil 2
 let jin = Customer(identifier: "customer-002", address: "515, dang-san-ro 3 gil, Seoul, ROK", name: "Jin")
 
 orderFacade.placeOrder(for: oreoRedValvet, by: simon)
-
+orderFacade.placeOrder(for: oreoRedValvet, by: jin)
