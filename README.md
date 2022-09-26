@@ -49,3 +49,10 @@ DesignPattern 관련 이론 정리 및 실습
   + [Command](https://github.com/simoniful/iOS_DesignPattern/issues/19)
   + [Chain of Responsibility](https://github.com/simoniful/iOS_DesignPattern/issues/20)
   + [Coordinator](https://github.com/simoniful/iOS_DesignPattern/issues/21)
++ Additional
+  + [Bridge]()
+  + [Decorator]()
+  + [Proxy]()
+  + [Interpreter]()
+  + [Template Method]()
+  + [Visitor]()
